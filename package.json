@@ -2,7 +2,11 @@
   "name": "transparent-proxy",
   "version": "1.8.10",
   "description": "Real transparent HTTP-Proxy-Server. Upstream your requests whatever you want!",
-  "main": "ProxyServer.js",
+  "main": "index.mjs",
+  "type": "module",
+  "engines": {
+    "node": ">=16.x"
+  },
   "scripts": {
     "test": "node test.js exit 0",
     "prepublish": "npm test"

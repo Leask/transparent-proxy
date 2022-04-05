@@ -2,7 +2,7 @@
 
 **transparent-proxy** extends the native [net.createServer](https://nodejs.org/api/net.html#net_net_createserver_options_connectionlistener) and it acts as a **real** transparent http-proxy.
 
-This module was built on top of TCP-level to avoid header-stripping problem of nodejs http(s)-modules. 
+This module was built on top of TCP-level to avoid header-stripping problem of nodejs http(s)-modules.
 
 It allows to upstream client-request dynamically to other proxies, or to certain iFace, and more...
 
@@ -61,13 +61,13 @@ The options are functions having follow parameters:
 
 
 - upstream-Function need to return/resolve a String with format -> `IP:PORT` or `USER:PWD@IP:PORT` of used http-proxy. If *'localhost'* is returned/resolved, then the host-self will be used as proxy.
-- tcpOutgoingAddress-Function need to return a String with format -> `IP`. 
+- tcpOutgoingAddress-Function need to return a String with format -> `IP`.
 
 *Note*: These functions will be executed before first tcp-socket-connection is established.
 
 
-- injectData-Function need to return a String or buffer for the new spoofed data. This will be upstreamed as request. 
-- injectResponse-Function need to return a String or buffer for the new received data. 
+- injectData-Function need to return a String or buffer for the new spoofed data. This will be upstreamed as request.
+- injectResponse-Function need to return a String or buffer for the new received data.
 
 
 ## Upstream to other proxies
@@ -115,7 +115,7 @@ This activate basic authorization mechanism.
 The Auth-function will be executed while handling Proxy-Authentications.
 
 
- 
+
 | Param  | Type                | Description  |
 | ------ | ------------------- | ------------ |
 |username | <code>String</code> |  The client username. |
@@ -185,9 +185,9 @@ My Super Fucking Spoofed UA!
 
 ## The `keys` Function
 
-This function will work only if `intercept` is set to `true`. 
+This function will work only if `intercept` is set to `true`.
 
-If activated needs to return an Object `{key:'String', cert:'String'}` like [native tls_connect_options.key & tls_connect_options.cert](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback) or `false` statement. 
+If activated needs to return an Object `{key:'String', cert:'String'}` like [native tls_connect_options.key & tls_connect_options.cert](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback) or `false` statement.
 
 If no object is returned, then [default keys](https://github.com/gr3p1p3/transparent-proxy/blob/master/lib/constants.js#L56) will be used to update communication.
 
@@ -198,7 +198,7 @@ If no object is returned, then [default keys](https://github.com/gr3p1p3/transpa
 
 
 
-*Note*: This function will be executed before TLS-Handshake.  
+*Note*: This function will be executed before TLS-Handshake.
 
 
 

@@ -1,10 +1,7 @@
-const net = require('net');
-
-const onConnectedClientHandling = require('./core/onConnectedClientHandling');
-const Logger = require('./lib/Logger');
-
-const {DEFAULT_OPTIONS} = require('./lib/constants');
-
+import net from 'net';
+import onConnectedClientHandling from './lib/onConnectedClientHandling.mjs';
+import Logger from './lib/Logger.mjs';
+import { DEFAULT_OPTIONS } from './lib/constants.mjs';
 
 class ProxyServer extends net.createServer {
     constructor(options) {
@@ -13,11 +10,11 @@ class ProxyServer extends net.createServer {
             verbose,
             injectData, injectResponse,
             auth, intercept, keys
-        } = {...DEFAULT_OPTIONS, ...options}; //merging with default options
+        } = { ...DEFAULT_OPTIONS, ...options }; //merging with default options
         const logger = new Logger(verbose);
         const bridgedConnections = {};
 
-        super(function (clientSocket) {
+        super(function(clientSocket) {
             onConnectedClientHandling(
                 clientSocket,
                 bridgedConnections,
@@ -36,4 +33,4 @@ class ProxyServer extends net.createServer {
     };
 }
 
-module.exports = ProxyServer;
+export default ProxyServer;
