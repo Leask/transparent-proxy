@@ -1,7 +1,7 @@
 {
   "name": "socrates",
-  "version": "1.8.10",
-  "description": "Real transparent HTTP-Proxy-Server. Upstream your requests whatever you want!",
+  "version": "1.8.11",
+  "description": "A Secure Web Proxy.",
   "main": "index.mjs",
   "type": "module",
   "engines": {
@@ -13,19 +13,15 @@
     "prepublish_": "npm test"
   },
   "keywords": [
-    "proxy",
-    "tunnel",
     "http-proxy",
     "mitm",
-    "proxy-authentication",
+    "proxy",
+    "secure",
+    "tcp",
     "transparent",
-    "upstream",
-    "server",
-    "squid",
-    "privoxy",
-    "tcp"
+    "tunnel"
   ],
-  "author": "gr3p",
-  "license": "ISC",
-  "homepage": "https://github.com/gr3p1p3/transparent-proxy"
+  "author": "Leask Wong",
+  "license": "MIT",
+  "homepage": "https://github.com/Leask/socrates"
 }

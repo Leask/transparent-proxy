@@ -1,6 +1,6 @@
 # Intro
 
-**transparent-proxy** extends the native [net.createServer](https://nodejs.org/api/net.html#net_net_createserver_options_connectionlistener) and it acts as a **real** transparent http-proxy.
+**Socrates** extends the native [net.createServer](https://nodejs.org/api/net.html#net_net_createserver_options_connectionlistener) and it acts as a **real** transparent http-proxy.
 
 This module was built on top of TCP-level to avoid header-stripping problem of nodejs http(s)-modules.
 
@@ -14,14 +14,14 @@ It supports [Basic Proxy-Authentication](https://developer.mozilla.org/en-US/doc
 ## Install
 
 ```bash
-npm i transparent-proxy
+npm i socrates
 ```
 
 
 ## Use
 
 ```javascript
-const ProxyServer = require('transparent-proxy');
+const ProxyServer = require('socrates');
 
 //init ProxyServer
 const server = new ProxyServer();
@@ -76,7 +76,7 @@ If you don't want to use the host of active instance self, then you need to upst
 This can be done with `upstream` attribute.
 
 ```javascript
-const ProxyServer = require('transparent-proxy');
+const ProxyServer = require('socrates');
 
 const server = new ProxyServer({
     upstream: function () {
@@ -93,7 +93,7 @@ server.listen(8080, '0.0.0.0', function () {
 You can also use an async function to upstream your requests:
 
 ```javascript
-const ProxyServer = require('transparent-proxy');
+const ProxyServer = require('socrates');
 
 const server = new ProxyServer({
     upstream: async function () {
@@ -128,7 +128,7 @@ The Auth-function will be executed while handling Proxy-Authentications.
 
 
 ```javascript
-const ProxyServer = require('transparent-proxy');
+const ProxyServer = require('socrates');
 
 const server = new ProxyServer({
     auth: function (username, password) {
@@ -188,7 +188,7 @@ This function will work only if `intercept` is set to `true`.
 
 If activated needs to return an Object `{key:'String', cert:'String'}` like [native tls_connect_options.key & tls_connect_options.cert](https://nodejs.org/api/tls.html#tls_tls_connect_options_callback) or `false` statement.
 
-If no object is returned, then [default keys](https://github.com/gr3p1p3/transparent-proxy/blob/master/lib/constants.js#L56) will be used to update communication.
+If no object is returned, then [default keys](https://github.com/gr3p1p3/socrates/blob/master/lib/constants.js#L56) will be used to update communication.
 
 
 | Param  | Type                | Description  |
@@ -215,7 +215,7 @@ It has following useful attributes/methods:
 ## .getBridgedConnections()
 
 ```javascript
-const ProxyServer = require('transparent-proxy');
+const ProxyServer = require('socrates');
 const server = new ProxyServer();
 
 //starting server on port 8080
@@ -236,7 +236,7 @@ setInterval(function showOpenSockets() {
 This example upstreams only requests for ifconfig.me to another proxy, for all other requests will be used localhost.
 
 ```javascript
-const ProxyServer = require('transparent-proxy');
+const ProxyServer = require('socrates');
 
 const server = new ProxyServer({
     upstream: function (data, session) {
@@ -264,7 +264,3 @@ x.x.x.x
 curl -x 127.0.0.1:8080 https://ifconfig.co
 y.y.y.y
 ```
-
-
-
-For more examples [look here](https://github.com/gr3p1p3/transparent-proxy/tree/master/examples).

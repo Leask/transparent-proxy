@@ -3,7 +3,7 @@ const exec = util.promisify(require('child_process').exec);
 const ProxyServer = require('./ProxyServer');
 
 async function test1() {
-    console.log('Starting TEST1 - Normal Transparent-Proxy!');
+    console.log('Starting TEST1 - Normal socrates!');
 
     //init ProxyServer
     const server = new ProxyServer({});
@@ -14,7 +14,7 @@ async function test1() {
     const PORT = 10001;
     return new Promise(function(res, rej) {
         server.listen(PORT, '0.0.0.0', async function() {
-            console.log('transparent-proxy was started!', server.address());
+            console.log('socrates was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' ' + singlePath;
@@ -23,7 +23,7 @@ async function test1() {
                 console.log('Response =>', stdout);
             }
 
-            console.log('Closing transparent-proxy Server - TEST1\n');
+            console.log('Closing socrates Server - TEST1\n');
             server.close();
             res(true);
         });
@@ -67,7 +67,7 @@ async function test2() {
 
     return new Promise(function(res, rej) {
         server.listen(PORT, '0.0.0.0', async function() {
-            console.log('transparent-proxy was started!', server.address());
+            console.log('socrates was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' -k ' + singlePath;
@@ -76,7 +76,7 @@ async function test2() {
                 console.log('Response =>', stdout);
             }
 
-            console.log('Closing transparent-proxy Server - TEST2\n');
+            console.log('Closing socrates Server - TEST2\n');
             server.close();
             res(true);
         });
@@ -101,7 +101,7 @@ async function test3() {
 
     return new Promise(function(res, rej) {
         server.listen(PORT, '0.0.0.0', async function() {
-            console.log('transparent-proxy was started!', server.address());
+            console.log('socrates was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' -k ' + singlePath;
@@ -110,7 +110,7 @@ async function test3() {
                 console.log('Response =>', stdout);
             }
 
-            console.log('Closing transparent-proxy Server - TEST3\n');
+            console.log('Closing socrates Server - TEST3\n');
             server.close();
             res(true);
         });
@@ -136,7 +136,7 @@ async function test4() {
 
     return new Promise(function(res, rej) {
         server.listen(PORT, '0.0.0.0', async function() {
-            console.log('transparent-proxy was started!', server.address());
+            console.log('socrates was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' -k ' + singlePath;
@@ -145,7 +145,7 @@ async function test4() {
                 console.log('Response =>', stdout);
             }
 
-            console.log('Closing transparent-proxy Server - TEST4\n');
+            console.log('Closing socrates Server - TEST4\n');
             server.close();
             res(true);
         });
@@ -169,7 +169,7 @@ async function test5() {
 
     return new Promise(function(res, rej) {
         server.listen(PORT, '0.0.0.0', async function() {
-            console.log('transparent-proxy was started!', server.address());
+            console.log('socrates was started!', server.address());
 
             for (const pwd of pwdToTest) {
                 const cmd = 'curl' + ' -x ' + pwd + '@127.0.0.1:' + PORT + ' ' + singlePath;
@@ -182,7 +182,7 @@ async function test5() {
                 console.log('Response =>', stdout);
             }
 
-            console.log('Closing transparent-proxy Server - TEST5\n');
+            console.log('Closing socrates Server - TEST5\n');
             server.close();
             res(true);
         });

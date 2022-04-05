@@ -1,5 +1,6 @@
-.npmignore
+.history
 .idea
+.npmignore
+package-lock.json
 tests
 tests/*
-.history

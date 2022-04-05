@@ -28,7 +28,7 @@ const server = new ProxyServer({
 const port = 10001;
 //starting server on port 10001
 server.listen(port, '0.0.0.0', async function() {
-    console.log('transparent-proxy was started!', server.address());
+    console.log('socrates was started!', server.address());
 
     for (const singlePath of toTest) {
         const cmd = 'curl' + ' -x localhost:' + port + ' -k ' + singlePath;
