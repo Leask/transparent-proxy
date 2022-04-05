@@ -1,5 +1,5 @@
 {
-  "name": "transparent-proxy",
+  "name": "socrates",
   "version": "1.8.10",
   "description": "Real transparent HTTP-Proxy-Server. Upstream your requests whatever you want!",
   "main": "index.mjs",
