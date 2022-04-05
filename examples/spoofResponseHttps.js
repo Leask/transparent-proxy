@@ -6,7 +6,6 @@ const toTest = ['http://v4.ident.me/', 'https://v4.ident.me/'];
 
 const server = new ProxyServer({
     intercept: true,
-    verbose: true,
     injectResponse: (data, session) => {
         const ipToSwitch = 'x.x.x.x';
         const switchWithIp = '6.6.6.6';
@@ -24,13 +23,13 @@ const server = new ProxyServer({
 
 const port = 10001;
 //starting server on port 10001
-server.listen(port, '0.0.0.0', async function () {
+server.listen(port, '0.0.0.0', async function() {
     console.log('transparent-proxy was started!', server.address());
 
     for (const singlePath of toTest) {
         const cmd = 'curl' + ' -x localhost:' + port + ' -k ' + singlePath;
         console.log(cmd);
-        const {stdout, stderr} = await exec(cmd);
+        const { stdout, stderr } = await exec(cmd);
         console.log('Response =>', stdout);
     }
     server.close();

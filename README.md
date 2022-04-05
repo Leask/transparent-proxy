@@ -45,7 +45,7 @@ server.listen(8080, '0.0.0.0', function () {
 |[options.injectData] | <code>Function</code> |  The edited data to upstream. Returns Buffer or string |
 |[options.injectResponse] | <code>Function</code> |  The edited response to return to connected client. Returns Buffer or string |
 |[options.keys] | <code>Function</code> |  The keys to use while handshake. It will work only if intercept is true. Returns Object or false |
-|[options.verbose] | <code>Boolean</code> |  Activate verbose mode. |
+|[options.logLevel] | <code>Number</code> |  Default 0 to log all messages. |
 |[options.intercept] | <code>Boolean</code> |  Activate interception of encrypted communications. False as default. |
 
 
@@ -161,7 +161,6 @@ const switchWith = 'My Super Fucking Spoofed UA!';
 
 const server = new ProxyServer({
     intercept: true,
-    verbose: true,
     injectData: (data, session) => {
         if (session.isHttps) {
             if (data.toString().match(uaToSwitch)) {

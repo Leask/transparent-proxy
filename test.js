@@ -6,20 +6,20 @@ async function test1() {
     console.log('Starting TEST1 - Normal Transparent-Proxy!');
 
     //init ProxyServer
-    const server = new ProxyServer({verbose: true});
+    const server = new ProxyServer({});
 
     const toTest = ['https://ifconfig.me', 'http://icanhazip.com', 'https://ifconfig.io/ua', 'http://asdahke.e'];
 
     //starting server on port 10001
     const PORT = 10001;
-    return new Promise(function (res, rej) {
-        server.listen(PORT, '0.0.0.0', async function () {
+    return new Promise(function(res, rej) {
+        server.listen(PORT, '0.0.0.0', async function() {
             console.log('transparent-proxy was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' ' + singlePath;
                 console.log(cmd);
-                const {stdout, stderr} = await exec(cmd);
+                const { stdout, stderr } = await exec(cmd);
                 console.log('Response =>', stdout);
             }
 
@@ -42,14 +42,13 @@ async function test2() {
 
     const cmdOwnIp = 'curl ' + toTest[0];
     console.log('Getting Own ip with', cmdOwnIp);
-    const {stdout, stderr} = await exec(cmdOwnIp);
+    const { stdout, stderr } = await exec(cmdOwnIp);
     ownIp = stdout.match(IP_REGEXP)[0].trim();
     console.log('Your IP is:', ownIp);
 
     console.log('Starting Proxy Server with spoof-behaviors');
     //init ProxyServer
     const server = new ProxyServer({
-        verbose: true,
         intercept: true,
         injectResponse: (data, session) => {
             //SPOOFING RETURNED RESPONSE
@@ -66,14 +65,14 @@ async function test2() {
         }
     });
 
-    return new Promise(function (res, rej) {
-        server.listen(PORT, '0.0.0.0', async function () {
+    return new Promise(function(res, rej) {
+        server.listen(PORT, '0.0.0.0', async function() {
             console.log('transparent-proxy was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' -k ' + singlePath;
                 console.log(cmd);
-                const {stdout, stderr} = await exec(cmd);
+                const { stdout, stderr } = await exec(cmd);
                 console.log('Response =>', stdout);
             }
 
@@ -94,21 +93,20 @@ async function test3() {
     console.log('Starting Proxy Server with spoof-behaviors');
     //init ProxyServer
     const server = new ProxyServer({
-        verbose: true,
         intercept: true,
         injectData: (data, session) => {
             return Buffer.from(data.toString().replace('curl/7.55.1', 'Spoofed UA!!'));
         }
     });
 
-    return new Promise(function (res, rej) {
-        server.listen(PORT, '0.0.0.0', async function () {
+    return new Promise(function(res, rej) {
+        server.listen(PORT, '0.0.0.0', async function() {
             console.log('transparent-proxy was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' -k ' + singlePath;
                 console.log(cmd);
-                const {stdout, stderr} = await exec(cmd);
+                const { stdout, stderr } = await exec(cmd);
                 console.log('Response =>', stdout);
             }
 
@@ -128,7 +126,6 @@ async function test4() {
 
     //init ProxyServer
     const server = new ProxyServer({
-        verbose: true,
         intercept: true,
         keys: (session) => {
             const tunnel = session.getTunnelStats();
@@ -137,14 +134,14 @@ async function test4() {
         }
     });
 
-    return new Promise(function (res, rej) {
-        server.listen(PORT, '0.0.0.0', async function () {
+    return new Promise(function(res, rej) {
+        server.listen(PORT, '0.0.0.0', async function() {
             console.log('transparent-proxy was started!', server.address());
 
             for (const singlePath of toTest) {
                 const cmd = 'curl' + ' -x 127.0.0.1:' + PORT + ' -k ' + singlePath;
                 console.log(cmd);
-                const {stdout, stderr} = await exec(cmd);
+                const { stdout, stderr } = await exec(cmd);
                 console.log('Response =>', stdout);
             }
 
@@ -165,22 +162,21 @@ async function test5() {
 
     //init ProxyServer
     const server = new ProxyServer({
-        verbose: true,
         auth: (username, password, session) => {
             return username === 'bar' && password === 'foo';
         }
     });
 
-    return new Promise(function (res, rej) {
-        server.listen(PORT, '0.0.0.0', async function () {
+    return new Promise(function(res, rej) {
+        server.listen(PORT, '0.0.0.0', async function() {
             console.log('transparent-proxy was started!', server.address());
 
             for (const pwd of pwdToTest) {
                 const cmd = 'curl' + ' -x ' + pwd + '@127.0.0.1:' + PORT + ' ' + singlePath;
                 console.log(cmd);
-                const {stdout, stderr} = await exec(cmd)
+                const { stdout, stderr } = await exec(cmd)
                     .catch((err) => {
-                        if (err.message.indexOf('HTTP code 407')) return {stdout: 'HTTP CODE 407'};
+                        if (err.message.indexOf('HTTP code 407')) return { stdout: 'HTTP CODE 407' };
                         throw err;
                     });
                 console.log('Response =>', stdout);

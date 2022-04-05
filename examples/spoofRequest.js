@@ -9,7 +9,6 @@ const switchWith = 'My Super Fucking Spoofed UA!';
 
 const server = new ProxyServer({
     intercept: true,
-    verbose: true,
     injectData: (data, session) => {
         if (session.isHttps) {
             // console.log('SESSION-DATA', data.toString()) //you can spoof here
@@ -28,14 +27,14 @@ const server = new ProxyServer({
 
 const port = 10001;
 //starting server on port 10001
-server.listen(port, '0.0.0.0', async function () {
+server.listen(port, '0.0.0.0', async function() {
     console.log('transparent-proxy was started!', server.address());
 
     for (const singlePath of toTest) {
         const cmd = 'curl' + ' -x localhost:' + port + ' -k ' + singlePath;
         console.log(cmd);
-        const {stdout, stderr} = await exec(cmd)
-            .catch((err) => ({stdout: err.message}));
+        const { stdout, stderr } = await exec(cmd)
+            .catch((err) => ({ stdout: err.message }));
         console.log('Response =>', stdout);
     }
     server.close();

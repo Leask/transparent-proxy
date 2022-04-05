@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "node test.js exit 0",
-    "prepublish": "npm test"
+    "updep": "npx ncu -u && npm install && wget https://raw.githubusercontent.com/Marak/colors.js/master/lib/styles.js -O ./lib/style.cjs",
+    "prepublish_": "npm test"
   },
   "keywords": [
     "proxy",
