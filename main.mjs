@@ -1,14 +1,16 @@
 import { Socrates, utilitas } from './index.mjs';
 
+const meta = await utilitas.which();
+const opts = { time: true };
+
 const socrates = new Socrates({
     auth: (username, password) => {
-        // console.log('Auth Enabled', { username, password });
+        utilitas.modLog(`Authenticate: ${username}:${password}.`, meta?.name, opts);
         return username === 'leask' && password === 'nopassword';
     },
 });
 
 socrates.listen(8964, '', async () => {
     const { address, family, port } = socrates.address();
-    const title = (await utilitas.which())?.title;
-    utilitas.modLog(`Server started at ${address}${port} (${family}).`, title);
+    utilitas.modLog(`Server started at ${address}${port} (${family}).`, meta?.title);
 });
