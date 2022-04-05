@@ -1,12 +1,12 @@
-import ProxyServer from './index.mjs';
+import Socrates from './index.mjs';
 
-//init ProxyServer
-const server = new ProxyServer({
+//init Socrates
+const socrates = new Socrates({
     // intercept: true,
     verbose: true,
 });
 
 //starting server on port 8080
-server.listen(8080, '0.0.0.0', function() {
-    console.log('TCP-Proxy-Server started!', server.address());
+socrates.listen(8080, '0.0.0.0', function() {
+    console.log('TCP-Proxy-Server started!', socrates.address());
 });

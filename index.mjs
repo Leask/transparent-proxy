@@ -3,7 +3,7 @@ import onConnectedClientHandling from './lib/onConnectedClientHandling.mjs';
 import { Logger } from './lib/utilitas.mjs';
 import { DEFAULT_OPTIONS } from './lib/constants.mjs';
 
-class ProxyServer extends net.createServer {
+class Socrates extends net.createServer {
     constructor(options) {
         const {
             upstream, tcpOutgoingAddress,
@@ -33,4 +33,4 @@ class ProxyServer extends net.createServer {
     };
 }
 
-export default ProxyServer;
+export default Socrates;
