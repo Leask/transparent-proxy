@@ -1,4 +1,4 @@
-# Intro
+# This project has been migrated to: https://github.com/Leask/socrates
 
 **Socrates** extends the native [net.createServer](https://nodejs.org/api/net.html#net_net_createserver_options_connectionlistener) and it acts as a **real** transparent http-proxy.
 
