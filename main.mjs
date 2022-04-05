@@ -8,6 +8,7 @@ const socrates = new Socrates({
         utilitas.modLog(`Authenticate: ${username}:${password}.`, meta?.name, opts);
         return username === 'leask' && password === 'nopassword';
     },
+    // intercept: true,
 });
 
 socrates.listen(8964, '', async () => {
