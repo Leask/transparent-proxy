@@ -1,6 +1,6 @@
 import net from 'net';
 import onConnectedClientHandling from './lib/onConnectedClientHandling.mjs';
-import Logger from './lib/Logger.mjs';
+import { Logger } from './lib/utilitas.mjs';
 import { DEFAULT_OPTIONS } from './lib/constants.mjs';
 
 class ProxyServer extends net.createServer {
