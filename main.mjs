@@ -1,7 +1,10 @@
 import { Socrates, utilitas } from './index.mjs';
 
 const socrates = new Socrates({
-    // intercept: true,
+    auth: (username, password) => {
+        // console.log('Auth Enabled', { username, password });
+        return username === 'leask' && password === 'nopassword';
+    },
 });
 
 socrates.listen(8964, '', async () => {
